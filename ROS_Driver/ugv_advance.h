@@ -398,6 +398,26 @@ void baseInfoFeedback() {
 	jsonInfoHttp["my"] = my;
 	jsonInfoHttp["mz"] = mz;
 
+  jsonInfoHttp["rgx"] = rgx;
+	jsonInfoHttp["rgy"] = rgy;
+	jsonInfoHttp["rgz"] = rgz;
+
+	jsonInfoHttp["rax"] = rax;
+	jsonInfoHttp["ray"] = ray;
+	jsonInfoHttp["raz"] = raz;
+
+	jsonInfoHttp["rmx"] = rmx;
+	jsonInfoHttp["rmy"] = rmy;
+	jsonInfoHttp["rmz"] = rmz;
+
+  jsonInfoHttp["ax_offset"] = ax_offset;
+  jsonInfoHttp["ay_offset"] = ay_offset;
+  jsonInfoHttp["az_offset"] = az_offset;
+
+  jsonInfoHttp["gx_offset"] = gx_offset;
+  jsonInfoHttp["gy_offset"] = gy_offset;
+  jsonInfoHttp["gz_offset"] = gz_offset;
+
 	// jsonInfoHttp["temp"] = temp.temperature;
 
 	jsonInfoHttp["odl"] = en_odom_l;

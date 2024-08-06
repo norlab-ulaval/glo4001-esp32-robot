@@ -377,6 +377,9 @@ unsigned long last_imu_update = 0;
 double ax, ay, az;
 double mx, my, mz;
 double gx, gy, gz;
+double rax, ray, raz;
+double rmx, rmy, rmz;
+double rgx, rgy, rgz;
 
 double en_odom_l, en_odom_r;
 

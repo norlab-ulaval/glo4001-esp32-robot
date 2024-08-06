@@ -112,31 +112,40 @@ void updateIMUData() {
 	icm.getEvent(&accel, &gyro, &temp, &mag);
 
 	ax = - kf_ax.updateEstimate(accel.acceleration.x) + ax_offset;
+  rax = - accel.acceleration.x;
 	if (abs(ax) < accel_h) {
 		ax = 0;
 	}
 	ay = - kf_ay.updateEstimate(accel.acceleration.y) + ay_offset;
+  ray = - accel.acceleration.y;
 	if (abs(ay) < accel_h) {
 		ay = 0;
 	}
 	az = - kf_az.updateEstimate(accel.acceleration.z) + az_offset;
+  raz = - accel.acceleration.z;
 	if (abs(az) < accel_h * 6) {
 		az = 0;
 	}
 
 	mx = kf_mx.updateEstimate(mag.magnetic.x);
+  rmx = mag.magnetic.x;
 	my = kf_my.updateEstimate(mag.magnetic.y);
+  rmy = mag.magnetic.y;
 	mz = kf_mz.updateEstimate(mag.magnetic.z);
+  rmz = mag.magnetic.z;
 
 	gx = kf_gx.updateEstimate(gyro.gyro.x) - gx_offset;
+  rgx = gyro.gyro.x;
 	if (abs(gx) < gyro_h) {
 		gx = 0;
 	}
 	gy = kf_gy.updateEstimate(gyro.gyro.y) - gy_offset;
+  rgy = gyro.gyro.y;
 	if (abs(gy) < gyro_h) {
 		gy = 0;
 	}
 	gz = kf_gz.updateEstimate(gyro.gyro.z) - gz_offset;
+  rgz = gyro.gyro.z;
 	if (abs(gz) < gyro_h) {
 		gz = 0;
 	}
