@@ -33,7 +33,15 @@ You need to install **[Arduino IDE](https://www.arduino.cc/en/software)** and **
 ### Install libraries
 Copy `SCServo` folder into `C:\Users\[username]\AppData\Local\Arduino15\libraries\`
 
-Install libraries with **`Library Manager`**: ArduinoJson, LittleFS, Adafruit_SSD1306, INA219_WE, ESP32Encoder, PID_v2, SimpleKalmanFilter, Adafruit_ICM20X, Adafruit_ICM20948, Adafruit_Sensor
+Install libraries with **`Library Manager`**: 
+- ArduinoJson
+- 107-Arduino-littlefs
+- Adafruit SSD1306
+- INA219_WE
+- ESP32Encoder
+- PID_v2
+- SimpleKalmanFilter
+- Adafruit ICM20X
 
 ### Basic Use
 You can send JSON command to robot via UART/USB@115200 or Http Request/Web App.
