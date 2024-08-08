@@ -380,74 +380,51 @@ void baseInfoFeedback() {
 	
 	last_feedback_time = millis();
 
-	jsonInfoHttp.clear();
-	jsonInfoHttp["T"] = FEEDBACK_BASE_INFO;
+	state_buffer[0] = FEEDBACK_BASE_INFO;
 
-	jsonInfoHttp["L"] = speedGetA;
-	jsonInfoHttp["R"] = speedGetB;
+	state_buffer[1] = speedGetA;
+	state_buffer[2] = speedGetB;
 
-	jsonInfoHttp["gx"] = gx;
-	jsonInfoHttp["gy"] = gy;
-	jsonInfoHttp["gz"] = gz;
+	state_buffer[3] = gx;
+	state_buffer[4] = gy;
+	state_buffer[5] = gz;
 
-	jsonInfoHttp["ax"] = ax;
-	jsonInfoHttp["ay"] = ay;
-	jsonInfoHttp["az"] = az;
+	state_buffer[6] = ax;
+	state_buffer[7] = ay;
+	state_buffer[8] = az;
 
-	jsonInfoHttp["mx"] = mx;
-	jsonInfoHttp["my"] = my;
-	jsonInfoHttp["mz"] = mz;
+	state_buffer[9] = mx;
+	state_buffer[10] = my;
+	state_buffer[11] = mz;
 
-  jsonInfoHttp["rgx"] = rgx;
-	jsonInfoHttp["rgy"] = rgy;
-	jsonInfoHttp["rgz"] = rgz;
+  	state_buffer[12] = rgx;
+	state_buffer[13] = rgy;
+	state_buffer[14] = rgz;
 
-	jsonInfoHttp["rax"] = rax;
-	jsonInfoHttp["ray"] = ray;
-	jsonInfoHttp["raz"] = raz;
+	state_buffer[15] = rax;
+	state_buffer[16] = ray;
+	state_buffer[17] = raz;
 
-	jsonInfoHttp["rmx"] = rmx;
-	jsonInfoHttp["rmy"] = rmy;
-	jsonInfoHttp["rmz"] = rmz;
+	state_buffer[18] = rmx;
+	state_buffer[19] = rmy;
+	state_buffer[20] = rmz;
 
-  jsonInfoHttp["ax_offset"] = ax_offset;
-  jsonInfoHttp["ay_offset"] = ay_offset;
-  jsonInfoHttp["az_offset"] = az_offset;
+  	state_buffer[21] = ax_offset;
+  	state_buffer[22] = ay_offset;
+  	state_buffer[23] = az_offset;
 
-  jsonInfoHttp["gx_offset"] = gx_offset;
-  jsonInfoHttp["gy_offset"] = gy_offset;
-  jsonInfoHttp["gz_offset"] = gz_offset;
+  	state_buffer[24] = gx_offset;
+  	state_buffer[25] = gy_offset;
+  	state_buffer[26] = gz_offset;
 
 	// jsonInfoHttp["temp"] = temp.temperature;
 
-	jsonInfoHttp["odl"] = en_odom_l;
-	jsonInfoHttp["odr"] = en_odom_r;
+	state_buffer[27] = en_odom_l;
+	state_buffer[28] = en_odom_r;
 
-	jsonInfoHttp["v"] = loadVoltage_V;
+	state_buffer[29] = loadVoltage_V;
 
-	switch(moduleType) {
-	case 1:
-		jsonInfoHttp["x"] = lastX;
-		jsonInfoHttp["y"] = lastY;
-		jsonInfoHttp["z"] = lastZ;
-		jsonInfoHttp["b"] = radB;
-		jsonInfoHttp["s"] = radS;
-		jsonInfoHttp["e"] = radE;
-		jsonInfoHttp["t"] = lastT;
-		jsonInfoHttp["torB"] = servoFeedback[BASE_SERVO_ID - 11].load;
-		jsonInfoHttp["torS"] = servoFeedback[SHOULDER_DRIVING_SERVO_ID - 11].load - servoFeedback[SHOULDER_DRIVEN_SERVO_ID - 11].load;
-		jsonInfoHttp["torE"] = servoFeedback[ELBOW_SERVO_ID - 11].load;
-		jsonInfoHttp["torH"] = servoFeedback[GRIPPER_SERVO_ID - 11].load;
-		break;
-	case 2:
-		jsonInfoHttp["pan"]  = panAngleCompute(gimbalFeedback[0].pos);
-		jsonInfoHttp["tilt"] = tiltAngleCompute(gimbalFeedback[1].pos);
-		break;
-	}
-
-	String getInfoJsonString;
-	serializeJson(jsonInfoHttp, getInfoJsonString);
-	Serial.println(getInfoJsonString);
+	Serial.write(state_buffer, sizeof(double) * BUFFER_SIZE);
 }
 
 

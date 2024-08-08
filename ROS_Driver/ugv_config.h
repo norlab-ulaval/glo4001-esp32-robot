@@ -374,6 +374,8 @@ double icm_yaw = 0;
 float icm_temp;
 unsigned long last_imu_update = 0;
 
+#define BUFFER_SIZE 30
+double state_buffer[BUFFER_SIZE] = {0};
 double ax, ay, az;
 double mx, my, mz;
 double gx, gy, gz;
