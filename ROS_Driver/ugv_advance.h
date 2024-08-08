@@ -424,6 +424,9 @@ void baseInfoFeedback() {
 
 	state_buffer[29] = loadVoltage_V;
 
+	uint8_t last_byte = (sizeof(double) * BUFFER_SIZE) - 1;
+	reinterpret_cast<uint8_t *>(state_buffer)[last_byte] = 0x0D;
+
 	Serial.write(reinterpret_cast<uint8_t *>(state_buffer), sizeof(double) * BUFFER_SIZE);
 }
 
