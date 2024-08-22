@@ -379,55 +379,57 @@ void baseInfoFeedback() {
 	}
 	
 	last_feedback_time = millis();
+	
+	jsonInfoHttp.clear();
 
-	state_buffer[0] = FEEDBACK_BASE_INFO;
+	state_buffer[0] = static_cast<float>(speedGetA);
+	state_buffer[1] = static_cast<float>(speedGetB);
 
-	state_buffer[1] = speedGetA;
-	state_buffer[2] = speedGetB;
+	state_buffer[2] = static_cast<float>(gx);
+	state_buffer[3] = static_cast<float>(gy);
+	state_buffer[4] = static_cast<float>(gz);
 
-	state_buffer[3] = gx;
-	state_buffer[4] = gy;
-	state_buffer[5] = gz;
+	state_buffer[5] = static_cast<float>(ax);
+	state_buffer[6] = static_cast<float>(ay);
+	state_buffer[7] = static_cast<float>(az);
 
-	state_buffer[6] = ax;
-	state_buffer[7] = ay;
-	state_buffer[8] = az;
+	state_buffer[8] = static_cast<float>(mx);
+	state_buffer[9] = static_cast<float>(my);
+	state_buffer[10] = static_cast<float>(mz);
 
-	state_buffer[9] = mx;
-	state_buffer[10] = my;
-	state_buffer[11] = mz;
+  	state_buffer[11] = static_cast<float>(rgx);
+	state_buffer[12] = static_cast<float>(rgy);
+	state_buffer[13] = static_cast<float>(rgz);
 
-  	state_buffer[12] = rgx;
-	state_buffer[13] = rgy;
-	state_buffer[14] = rgz;
+	state_buffer[14] = static_cast<float>(rax);
+	state_buffer[15] = static_cast<float>(ray);
+	state_buffer[16] = static_cast<float>(raz);
 
-	state_buffer[15] = rax;
-	state_buffer[16] = ray;
-	state_buffer[17] = raz;
+	state_buffer[17] = static_cast<float>(rmx);
+	state_buffer[18] = static_cast<float>(rmy);
+	state_buffer[19] = static_cast<float>(rmz);
 
-	state_buffer[18] = rmx;
-	state_buffer[19] = rmy;
-	state_buffer[20] = rmz;
+  	state_buffer[20] = static_cast<float>(ax_offset);
+  	state_buffer[21] = static_cast<float>(ay_offset);
+  	state_buffer[22] = static_cast<float>(az_offset);
 
-  	state_buffer[21] = ax_offset;
-  	state_buffer[22] = ay_offset;
-  	state_buffer[23] = az_offset;
+  	state_buffer[23] = static_cast<float>(gx_offset);
+  	state_buffer[24] = static_cast<float>(gy_offset);
+  	state_buffer[25] = static_cast<float>(gz_offset);
 
-  	state_buffer[24] = gx_offset;
-  	state_buffer[25] = gy_offset;
-  	state_buffer[26] = gz_offset;
+	state_buffer[26] = static_cast<float>(en_odom_l);
+	state_buffer[27] = static_cast<float>(en_odom_r);
 
-	// jsonInfoHttp["temp"] = temp.temperature;
+	state_buffer[28] = static_cast<float>(loadVoltage_V);
 
-	state_buffer[27] = en_odom_l;
-	state_buffer[28] = en_odom_r;
+	uint8_t * buffer_u8 = reinterpret_cast<uint8_t *>(state_buffer);
 
-	state_buffer[29] = loadVoltage_V;
+	uint last_byte_index = (sizeof(float) * BUFFER_SIZE) - 1;
+	buffer_u8[last_byte_index - 1] = 0x0D;
+	buffer_u8[last_byte_index] = 0x0A;
 
-	uint8_t last_byte = (sizeof(double) * BUFFER_SIZE) - 1;
-	reinterpret_cast<uint8_t *>(state_buffer)[last_byte] = 0x0D;
-
-	Serial.write(reinterpret_cast<uint8_t *>(state_buffer), sizeof(double) * BUFFER_SIZE);
+	Serial.write(reinterpret_cast<uint8_t *>(state_buffer), sizeof(float) * BUFFER_SIZE);
+	//Serial.println(String(reinterpret_cast<uint8_t *>(state_buffer), sizeof(float) * BUFFER_SIZE));
 }
 
 

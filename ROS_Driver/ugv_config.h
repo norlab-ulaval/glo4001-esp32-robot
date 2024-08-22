@@ -48,7 +48,7 @@ bool steadyMode = false;
 
 // 0: turn off base info feedback flow.
 // 1: [default] turn on base info feedback flow.
-bool baseFeedbackFlow = 1;
+bool baseFeedbackFlow = 0;
 
 String thisMacStr;
 
@@ -374,8 +374,8 @@ double icm_yaw = 0;
 float icm_temp;
 unsigned long last_imu_update = 0;
 
-#define BUFFER_SIZE 31
-double state_buffer[BUFFER_SIZE] = {0};
+#define BUFFER_SIZE 30
+float state_buffer[BUFFER_SIZE] = {0};
 double ax, ay, az;
 double mx, my, mz;
 double gx, gy, gz;
