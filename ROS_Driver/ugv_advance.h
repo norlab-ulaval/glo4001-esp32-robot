@@ -428,6 +428,7 @@ void baseInfoFeedback() {
 	buffer_u8[last_byte_index - 1] = 0x0D;
 	buffer_u8[last_byte_index] = 0x0A;
 
+	Serial.flush();
 	Serial.write(reinterpret_cast<uint8_t *>(state_buffer), sizeof(float) * BUFFER_SIZE);
 	//Serial.println(String(reinterpret_cast<uint8_t *>(state_buffer), sizeof(float) * BUFFER_SIZE));
 }
