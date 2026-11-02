@@ -35,7 +35,7 @@ bool runNewJsonCmd = false;
 // 1: RaspRover
 // 2: UGV Rover
 // 3: UGV Beast
-byte mainType = 2;
+byte mainType = 1;
 
 // 0: [Base default] without RoArm-M2 and gimbal.
 // 1: [RoArm default] RoArm-M2 mounted on the UGV.
@@ -341,8 +341,8 @@ float windup_limits = 255;
 // #define SET_MOTOR_DIR true
 
 double WHEEL_D = 0.0800;
-int ONE_CIRCLE_PLUSES = 660;
-double TRACK_WIDTH = 0.172;
+int ONE_CIRCLE_PLUSES = 2100;
+double TRACK_WIDTH = 0.125;
 bool SET_MOTOR_DIR = false;
 
 
